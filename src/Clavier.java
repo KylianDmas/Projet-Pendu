@@ -27,6 +27,13 @@ public class Clavier extends TilePane{
      */
     public Clavier(String touches, EventHandler<ActionEvent> actionTouches) {
         // A implémenter
+        super();
+        for(char c: touches.toCharArray()){
+            Button bouton = new Button(String.valueOf(c));
+            bouton.setOnAction(actionTouches);
+            clavier.add(bouton);
+            this.getChildren().add(bouton);
+        }
     }
 
     /**
@@ -35,5 +42,14 @@ public class Clavier extends TilePane{
      */
     public void desactiveTouches(Set<String> touchesDesactivees){
         // A implémenter
+        for(Button b: this.clavier){
+            String s = b.getText();
+            if (touchesDesactivees.contains(s)){
+                b.setDisable(true);
+            }
+            else{
+                b.setDisable(false);
+            }
+        }
     }
 }
